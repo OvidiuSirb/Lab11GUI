@@ -68,6 +68,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coat.cpp" />
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="CSVPhoto.cpp" />
+    <ClCompile Include="FilePhoto.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_Lab11GUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -82,6 +86,13 @@
     </ClCompile>
     <ClCompile Include="Lab11GUI.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Photo.cpp" />
+    <ClCompile Include="PhotoValidator.cpp" />
+    <ClCompile Include="Repository.cpp" />
+    <ClCompile Include="RepositoryExceptions.cpp" />
+    <ClCompile Include="tests.cpp" />
+    <ClCompile Include="Ui.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Lab11GUI.h">
@@ -108,7 +119,18 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Coat.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="CSVPhoto.h" />
+    <ClInclude Include="FilePhoto.h" />
     <ClInclude Include="GeneratedFiles\ui_Lab11GUI.h" />
+    <ClInclude Include="Photo.h" />
+    <ClInclude Include="PhotoValidator.h" />
+    <ClInclude Include="Repository.h" />
+    <ClInclude Include="RepositoryExceptions.h" />
+    <ClInclude Include="tests.h" />
+    <ClInclude Include="Ui.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Lab11GUI.qrc">
@@ -121,6 +143,20 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Coats" />
+    <None Include="Coats.html" />
+    <None Include="Coats.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Coats.txt" />
+    <Text Include="Coats2.txt" />
+    <Text Include="Tests.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="uml.bmp" />
+    <Image Include="uml.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
