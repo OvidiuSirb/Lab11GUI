@@ -84,7 +84,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_Lab11GUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Lab11GUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Photo.cpp" />
     <ClCompile Include="PhotoValidator.cpp" />

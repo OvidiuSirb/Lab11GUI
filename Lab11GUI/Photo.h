@@ -4,8 +4,6 @@
 
 #ifndef LAB5_6_PHOTO_H
 #define LAB5_6_PHOTO_H
-
-#include "lab/DynamicVector.h"
 #include <vector>
 #include "PhotoValidator.h"
 
@@ -39,6 +37,8 @@ public:
     int get_size();
 
     int get_current();
+
+	std::vector<Coat> getAll() { return this->photos; }
 };
 
 

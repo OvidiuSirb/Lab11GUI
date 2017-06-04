@@ -214,7 +214,7 @@ void Ui::update_coat() {
     cin >> size2;
 
     this->ctrl.update_coat(size,colour,size2,colour2,photograph,quantity,price);
-    this->ctrl.add_coat_to_photos();
+    this->ctrl.add_coats_to_photos();
 }
 
 void Ui::delete_coat() {
@@ -226,7 +226,7 @@ void Ui::delete_coat() {
     cin >> colour;
 
     this->ctrl.delete_coat(size,colour);
-    this->ctrl.add_coat_to_photos();
+    this->ctrl.add_coats_to_photos();
 }
 void Ui::add_coat_to_repo() {
     cout << "Enter the colour: ";
@@ -246,7 +246,7 @@ void Ui::add_coat_to_repo() {
     cin >> size;
 
     this->ctrl.add_coat_to_repository(size,colour,photograph,quantity,price);
-    this->ctrl.add_coat_to_photos();
+    this->ctrl.add_coats_to_photos();
 }
 
 void Ui::display_all_coats_in_repo() {
@@ -276,7 +276,7 @@ void Ui::print_photos() {
 }
 
 void Ui::add_coats_to_photos() {
-    this->ctrl.add_coat_to_photos();
+    this->ctrl.add_coats_to_photos();
 }
 
 void Ui::print_user_menu() {

@@ -22,7 +22,7 @@ void Controller::update_coat(const int &size, const std::string &colour,const in
     this->repo.update_coat(size,colour,c);
 }
 
-void Controller::add_coat_to_photos() {
+void Controller::add_coats_to_photos() {
     vector<Coat> v = this->repo.get_coats();
     Coat* coats = v.data();
     for(int i = 0;i < v.size();i++)
@@ -30,6 +30,10 @@ void Controller::add_coat_to_photos() {
         Coat c = coats[i];
         this->photos->add(c);
     }
+}
+
+void Controller::add_coat_to_photos(const Coat& c) {
+	this->photos->add(c);
 }
 
 void Controller::open_photos(int type) const{

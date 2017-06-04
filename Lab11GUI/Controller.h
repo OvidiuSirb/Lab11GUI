@@ -21,6 +21,7 @@ public:
 //Controller(const Repository& r,FilePhoto* p,PhotoValidator v)
     Repository get_repo() const {return repo;}
     Photo* get_photos() const {return photos;}
+	std::vector<Coat> get_coats_from_photos() { return this->photos->getAll(); }
 
     //Add a coat to the repository.
     //Input: size,colour,photograph,quantity,price - the coat's infos
@@ -40,7 +41,9 @@ public:
     void update_coat(const int &size, const std::string &colour,const int& size2,const std::string& colour2,const std::string& photograph,const int& quantity,const int& price);
 
     //All the coats from the repository are added to the list of photos.
-    void add_coat_to_photos();
+    void add_coats_to_photos();
+
+	void add_coat_to_photos(const Coat & c);
 
     //The first photo is shown.If there aren't any,it displays a message.
     void open_photos(int type) const;

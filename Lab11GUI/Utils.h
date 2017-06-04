@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <ciso646>
 
 /*
 	Trims leading and trailing spaces from a string.

@@ -58,7 +58,7 @@ void tests::test_controller()
     assert(repo.get_coats().size()==3);
 
 
-    ctrl.add_coat_to_photos();
+    ctrl.add_coats_to_photos();
     assert(ctrl.get_photos()->get_size()==repo.get_coats().size());
 
     Coat c{14,"white","http://i01.i.aliimg.com/img/pb/815/673/406/406673815_098.jpg",200,2000};

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include "Utils.h"
+#include <ciso646>
 
 using namespace std;
 
