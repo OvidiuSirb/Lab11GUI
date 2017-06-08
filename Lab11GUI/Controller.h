@@ -9,19 +9,29 @@
 #include <iostream>
 #include "FilePhoto.h"
 #include "PhotoValidator.h"
+#include "Undo.h"
+#include <memory>
+#include <vector>
 
 class Controller {
 private:
-    Repository repo;
-    FilePhoto* photos;
+    Repository& repo;
+    FilePhoto& photos;
     PhotoValidator validator;
 
+	std::vector<std::unique_ptr<UndoAction>> UndoActions;
+	std::vector<std::unique_ptr<Coat>> UndoElements;
+	
 public:
-    Controller(const Repository& r,FilePhoto* p,PhotoValidator v): repo{r}, photos{p}, validator{} {}
+    Controller(Repository& r,FilePhoto& p,PhotoValidator v): repo { r }, photos{p}, validator{v} {}
+
+	Controller(const Controller& ctrl) = delete;		// controller cannot be copied now, because it contains unique_ptr
+	void operator=(const Controller& ctrl) = delete;	// same for assignment
+
 //Controller(const Repository& r,FilePhoto* p,PhotoValidator v)
     Repository get_repo() const {return repo;}
-    Photo* get_photos() const {return photos;}
-	std::vector<Coat> get_coats_from_photos() { return this->photos->getAll(); }
+    Photo get_photos() const {return photos;}
+	std::vector<Coat> get_coats_from_photos() { return this->photos.getAll(); }
 
     //Add a coat to the repository.
     //Input: size,colour,photograph,quantity,price - the coat's infos
@@ -58,6 +68,8 @@ public:
     void savePhotos(const std::string& filename);
 
     void open_file(int type,std::string html="") const;
+
+	void undo();
 };
 
 

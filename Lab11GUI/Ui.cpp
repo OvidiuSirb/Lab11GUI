@@ -1,7 +1,7 @@
 //
 // Created by Ovi on 25.03.2017.
 //
-
+/*
 #include <cstring>
 #include <fstream>
 #include "Ui.h"
@@ -61,23 +61,23 @@ void Ui::run() {
                             switch (command_photos)
                             {
                                 case 1:
-                                    if(this->ctrl.get_photos()->is_empty())
+                                    if(this->ctrl.get_photos().is_empty())
                                     {
                                         cout << "Nothing to show,there are no photos."<< endl;
                                         continue;
                                     }
                                     this->ctrl.open_photos(1);
-                                    c = this->ctrl.get_photos()->get_current_photo();
+                                    c = this->ctrl.get_photos().get_current_photo();
                                     cout <<  c.get_colour()<< " - " << c.get_quantity() << " - " << c.get_size() << " - " << c.get_price()<<endl;
                                     break;
                                 case 2:
-                                    if(this->ctrl.get_photos()->is_empty())
+                                    if(this->ctrl.get_photos().is_empty())
                                     {
                                         cout << "Nothing to show,there are no photos."<< endl;
                                         continue;
                                     }
                                     this->ctrl.next_photo();
-                                    c2 = this->ctrl.get_photos()->get_current_photo();
+                                    c2 = this->ctrl.get_photos().get_current_photo();
                                     cout <<  c2.get_colour()<< " - " << c2.get_quantity() << " - " << c2.get_size() << " - " << c2.get_price()<<endl;
                                     break;
                                 default:break;
@@ -350,5 +350,5 @@ void Ui::savePhotosToFile(int type) {
         }
     }
 }
-
+*/
 

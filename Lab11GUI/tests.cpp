@@ -41,7 +41,7 @@ void tests::test_repo() {
 void tests::test_controller()
 {
     Repository repo("..\\Tests.txt");
-    FilePhoto* p= new CSVPhoto{};
+	CSVPhoto p;
     Controller ctrl(repo, p, PhotoValidator());
     assert(ctrl.get_repo().get_coats().size()==3);
 
@@ -59,7 +59,7 @@ void tests::test_controller()
 
 
     ctrl.add_coats_to_photos();
-    assert(ctrl.get_photos()->get_size()==repo.get_coats().size());
+    assert(ctrl.get_photos().get_size()==repo.get_coats().size());
 
     Coat c{14,"white","http://i01.i.aliimg.com/img/pb/815/673/406/406673815_098.jpg",200,2000};
 

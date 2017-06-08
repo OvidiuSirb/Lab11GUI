@@ -1,7 +1,7 @@
 //
 // Created by Ovi on 25.03.2017.
 //
-
+/*
 #ifndef LAB5_6_UI_H
 #define LAB5_6_UI_H
 
@@ -38,3 +38,4 @@ private:
 
 
 #endif //LAB5_6_UI_H
+*/

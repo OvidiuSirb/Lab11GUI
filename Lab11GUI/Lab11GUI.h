@@ -10,6 +10,9 @@
 #include <qmainwindow.h>
 #include <RepositoryExceptions.h>
 #include <qmessagebox.h>
+#include <BasketTableModel.h>
+#include <qsortfilterproxymodel.h>
+#include "basketwidget.h"
 
 
 class Lab11GUI : public QMainWindow
@@ -17,12 +20,12 @@ class Lab11GUI : public QMainWindow
 	Q_OBJECT
 
 public:
-	Lab11GUI(Controller& _ctrl, QWidget *parent = Q_NULLPTR) : ctrl(_ctrl) 
-	{ 
-	initGUI();
-	currentCoatsInCoatList = ctrl.get_repo().get_coats();
-	populate_coat_list();
-	ConnectSignalsAndSlots();
+	Lab11GUI(Controller& _ctrl, QWidget *parent = Q_NULLPTR) : ctrl(_ctrl)
+	{
+		initGUI();
+		currentCoatsInCoatList = ctrl.get_repo().get_coats();
+		populate_coat_list();
+		ConnectSignalsAndSlots();
 	}
 	~Lab11GUI() {}
 
@@ -30,10 +33,10 @@ public:
 	{
 
 		ui.setupUi(this);
-		
-//		QVBoxLayout* layout = new QVBoxLayout(this);   //layout vertical
-//		this->coats->setSelectionMode(QAbstractItemView::SingleSelection);	//how the view responds to user selections
-//		layout->addWidget(this->coats);
+
+		//		QVBoxLayout* layout = new QVBoxLayout(this);   //layout vertical
+		//		this->coats->setSelectionMode(QAbstractItemView::SingleSelection);	//how the view responds to user selections
+		//		layout->addWidget(this->coats);
 	}
 
 	void populateCoats()
@@ -59,7 +62,7 @@ public:
 	{
 		//add a connection: function listItemChanged() will be called when an item in the list is selected
 		QObject::connect(ui.coat_list, SIGNAL(itemSelectionChanged()), this, SLOT(listItemChanged()));
-		
+
 		//add button connection
 		QObject::connect(ui.add, SIGNAL(clicked()), this, SLOT(addNewCoat()));
 		QObject::connect(ui.delete_2, SIGNAL(clicked()), this, SLOT(deleteCoat()));
@@ -68,6 +71,9 @@ public:
 		QObject::connect(ui.update, SIGNAL(clicked()), this, SLOT(updateCoat()));
 		QObject::connect(ui.view, SIGNAL(clicked()), this, SLOT(view()));
 		QObject::connect(ui.next, SIGNAL(clicked()), this, SLOT(next()));
+		QObject::connect(ui.undo, SIGNAL(clicked()), this, SLOT(undo()));
+		QObject::connect(ui.refresh, SIGNAL(clicked()), this, SLOT(refresh()));
+		QObject::connect(ui.table, SIGNAL(clicked()), this, SLOT(see()));
 		
 	}
 	void populate_coat_list()
@@ -108,7 +114,7 @@ public:
 	{
 		if (ui.basket->count() > 0)
 			ui.basket->clear();
-		
+
 		for (auto s : this->ctrl.get_coats_from_photos())
 		{
 			QString itemInList = QString::fromStdString(s.get_colour() + " - " + std::to_string(s.get_quantity()) + " - " + std::to_string(s.get_size()) + " - " + std::to_string(s.get_price()) + "$");
@@ -118,9 +124,10 @@ public:
 	}
 
 private:
+	basketwidget* Widget;
 	Controller& ctrl;
-	std::vector<Coat> currentCoatsInCoatList ;
-	QListWidget* coats =  new QListWidget();
+	std::vector<Coat> currentCoatsInCoatList;
+	QListWidget* coats = new QListWidget();
 	Ui_Lab11GUIClass ui;
 	QListWidget* coat_list = ui.coat_list;
 
@@ -132,7 +139,7 @@ private slots:
 			return;
 
 		std::vector<Coat> coats = this->currentCoatsInCoatList;
-		
+
 		//get the coat at the selected index
 		if (idx >= coats.size())
 			return;
@@ -144,7 +151,7 @@ private slots:
 		ui.price->setText(QString::fromStdString(std::to_string(c.get_price())));
 		ui.photo->setText(QString::fromStdString(c.get_photo()));
 	}
-	
+
 	void addNewCoat()
 	{
 		std::string colour = ui.colour->text().toStdString();
@@ -169,7 +176,7 @@ private slots:
 	{
 		std::string colour = ui.colour->text().toStdString();
 		int size = ui.size->text().toInt();
-		
+
 		this->ctrl.delete_coat(size, colour);
 		this->currentCoatsInCoatList = this->ctrl.get_repo().get_coats();
 		this->populate_coat_list();
@@ -179,7 +186,9 @@ private slots:
 	{
 		int idx = this->getCoatListSelectedIndex();
 		if (idx == -1 || idx >= this->currentCoatsInCoatList.size())
-			{return; }
+		{
+			return;
+		}
 		Coat c = this->currentCoatsInCoatList[idx];
 		this->ctrl.add_coat_to_photos(c);
 		this->populatePhotos();
@@ -230,5 +239,35 @@ private slots:
 	void next()
 	{
 		this->ctrl.next_photo();
+	}
+
+	void undo()
+	{
+		try
+		{
+			this->ctrl.undo();
+			this->currentCoatsInCoatList = this->ctrl.get_repo().get_coats();
+			this->populate_coat_list();
+		}
+		catch (RepositoryException& e)
+		{
+			QMessageBox messageBox;
+			messageBox.critical(0, "Error", QString::fromStdString(e.what()));
+		}
+	}
+
+	void refresh()
+	{
+		this->currentCoatsInCoatList = this->ctrl.get_repo().get_coats();
+		this->populate_coat_list();
+	}
+	void see()
+	{
+		BasketTableModel* tableModel = new BasketTableModel{ ctrl };
+
+		QSortFilterProxyModel* sortModel = new QSortFilterProxyModel{};
+		sortModel->setSourceModel(tableModel);
+		Widget = new basketwidget{ ctrl,sortModel };
+		Widget->show();
 	}
 };

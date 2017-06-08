@@ -51,15 +51,18 @@ public:
     QListWidget *basket;
     QPushButton *move_one;
     QPushButton *move_all;
-    QWidget *widget;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout;
     QPushButton *add;
     QPushButton *delete_2;
     QPushButton *update;
-    QWidget *widget1;
+    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *view;
     QPushButton *next;
+    QPushButton *undo;
+    QPushButton *refresh;
+    QPushButton *table;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -67,7 +70,7 @@ public:
     {
         if (Lab11GUIClass->objectName().isEmpty())
             Lab11GUIClass->setObjectName(QStringLiteral("Lab11GUIClass"));
-        Lab11GUIClass->resize(901, 523);
+        Lab11GUIClass->resize(971, 552);
         centralWidget = new QWidget(Lab11GUIClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         label = new QLabel(centralWidget);
@@ -154,47 +157,56 @@ public:
         move_all = new QPushButton(centralWidget);
         move_all->setObjectName(QStringLiteral("move_all"));
         move_all->setGeometry(QRect(430, 220, 93, 28));
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(50, 430, 295, 30));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget2 = new QWidget(centralWidget);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(50, 430, 295, 30));
+        horizontalLayout = new QHBoxLayout(layoutWidget2);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        add = new QPushButton(widget);
+        add = new QPushButton(layoutWidget2);
         add->setObjectName(QStringLiteral("add"));
 
         horizontalLayout->addWidget(add);
 
-        delete_2 = new QPushButton(widget);
+        delete_2 = new QPushButton(layoutWidget2);
         delete_2->setObjectName(QStringLiteral("delete_2"));
 
         horizontalLayout->addWidget(delete_2);
 
-        update = new QPushButton(widget);
+        update = new QPushButton(layoutWidget2);
         update->setObjectName(QStringLiteral("update"));
 
         horizontalLayout->addWidget(update);
 
-        widget1 = new QWidget(centralWidget);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(650, 430, 195, 30));
-        horizontalLayout_2 = new QHBoxLayout(widget1);
+        layoutWidget3 = new QWidget(centralWidget);
+        layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(650, 430, 195, 30));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        view = new QPushButton(widget1);
+        view = new QPushButton(layoutWidget3);
         view->setObjectName(QStringLiteral("view"));
 
         horizontalLayout_2->addWidget(view);
 
-        next = new QPushButton(widget1);
+        next = new QPushButton(layoutWidget3);
         next->setObjectName(QStringLiteral("next"));
 
         horizontalLayout_2->addWidget(next);
 
+        undo = new QPushButton(centralWidget);
+        undo->setObjectName(QStringLiteral("undo"));
+        undo->setGeometry(QRect(440, 420, 93, 28));
+        refresh = new QPushButton(centralWidget);
+        refresh->setObjectName(QStringLiteral("refresh"));
+        refresh->setGeometry(QRect(980, 0, 20, 20));
+        table = new QPushButton(centralWidget);
+        table->setObjectName(QStringLiteral("table"));
+        table->setGeometry(QRect(700, 470, 93, 28));
         Lab11GUIClass->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(Lab11GUIClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -226,6 +238,9 @@ public:
         update->setText(QApplication::translate("Lab11GUIClass", "Update", Q_NULLPTR));
         view->setText(QApplication::translate("Lab11GUIClass", "View", Q_NULLPTR));
         next->setText(QApplication::translate("Lab11GUIClass", "Next", Q_NULLPTR));
+        undo->setText(QApplication::translate("Lab11GUIClass", "Undo", Q_NULLPTR));
+        refresh->setText(QApplication::translate("Lab11GUIClass", "Refresh", Q_NULLPTR));
+        table->setText(QApplication::translate("Lab11GUIClass", "Open basket", Q_NULLPTR));
     } // retranslateUi
 
 };

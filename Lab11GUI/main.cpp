@@ -7,8 +7,8 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	Repository repo("..\\Lab11GUI\\Coats.txt");
-	FilePhoto* p = new CSVPhoto();
-	Controller ctrl(repo, p, PhotoValidator());
+	CSVPhoto p;
+	Controller ctrl( repo, p, PhotoValidator() );
 	Lab11GUI w( ctrl);
 	w.show();
 	return a.exec();
